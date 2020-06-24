@@ -1,0 +1,86 @@
+body,
+h3,
+h4,
+p {
+	color: rgb(252, 214, 4);
+}
+
+body {
+	background-color: rgb(8, 8, 0);
+}
+
+#stroke { 
+    text-align: center;
+}
+
+
+.jumbotron {
+	background-color: purple;
+}
+
+.r2a {
+	border: 1px solid gold;
+	border-radius: 0.25rem;
+	padding-left: 1rem;
+}
+
+.btn-primary {
+	background-color: purple;
+}
+
+#buttons-view,
+#city-input {
+	margin-top: 1rem;
+	border: 1px solid purple;
+	border-radius: 0.25rem;
+}
+
+.list-group-item {
+	background-color: purple;
+}
+
+.card {
+	background-color: hotpink;
+}
+
+.card-body {
+	padding: 0.35rem;
+}
+
+.uvGreen {
+	background-color: gold;
+	border-radius: 5px;
+}
+
+.uvYellow {
+	background-color: lightyellow;
+	border-radius: 5px;
+}
+
+.uvOrange {
+	background-color: lightsalmon;
+	border-radius: 5px;
+}
+
+.uvRed {
+	background-color: palevioletred;
+	border-radius: 5px;
+}
+
+.uvPurple {
+	background-color: violet;
+	border-radius: 5px;
+}
+
+img {
+	width: 15%;
+	height: 15%;
+}
+
+.card-text {
+	font-size: 10pt;
+}
+
+.forcast {
+	padding: 1rem;
+}

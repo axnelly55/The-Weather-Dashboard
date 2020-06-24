@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Weather Dashboard</title>
+    <link rel="stylesheet" href="TWD.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+    <style>
+        .panel-body a {
+            word-break: break-all;
+        }
+    </style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Diego's Best</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <style>
+        .panel-body a {
+            word-break: break-all;
+        }
+    </style>
+     <script
+     src="https://code.jquery.com/jquery-3.4.1.min.js"
+     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+     crossorigin="anonymous"
+   ></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Jumbotron for Title -->
+        <div class="jumbotron" style="background-color: #ffe600 ; color: purple;">
+            <h1 class="text-center"><strong><i class="fa fa-newspaper-o"></i> San Diego's Best Search</strong></h1>
+        </div>
+        <!-- Row for Searching New York Times -->
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <!-- First panel is for handling the search parameters -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong><i class="fa  fa-list-alt"></i> Search Parameters</strong></h3>
+                    </div>
+                    <div class="panel-body">
+                        <!-- Here we create an HTML Form for handling the inputs-->
+                        <form role="form">
+                            <!-- Here we create the text box for capturing the search term-->
+                            <div class="form-group">
+                                <label for="search">Search Term:</label>
+                                <input type="text" class="form-control" id="search-term">
+                            </div>
+                            <!-- Here we capture the number of records that the user wants to retrieve  -->
+                            <div class="form-group">
+                                <label for="pwd">Number of Records to Retrieve:</label>
+                                <select class="form-control" id="num-records-select">
+                                    <option value="1">1</option>
+                                    <!-- Setting the option for 5 as default -->
+                                    <option value="3">3</option>
+                                    <option value="5" selected="">5</option>
+                                    <option value="7">7</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                            <!-- Here we capture the Start Year Parameter-->
+                            <div class="form-group">
+                                <label for="start-year">Start Year (Optional):</label>
+                                <input type="text" class="form-control" id="start-year">
+                            </div>
+                            <!-- Here we capture the End Year Parameter -->
+                            <div class="form-group">
+                                <label for="end-year">End Year (Optional):</label>
+                                <input type="text" class="form-control" id="end-year">
+                            </div>
+                            <!-- Here we have our final submit button -->
+                            <button type="submit" class="btn btn-default" id="run-search"><i class="fa fa-search"></i>
+                                Search</button>
+                            <button type="button" class="btn btn-default" id="clear-all"><i class="fa fa-trash"></i>
+                                Clear Results</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- This row will handle all of the retrieved articles -->
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <!-- This panel will initially be made up of a panel and wells for each of the articles retrieved -->
+                <div class="panel panel-primary">
+                    <!-- Panel Heading for the retrieved articles box -->
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong><i class="fa fa-table"></i> Top Articles</strong></h3>
+                    </div>
+                    <!-- This main panel will hold each of the resulting articles -->
+                    <div class="panel-body" id="well-section">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Region -->
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Line Break followed by closing -->
+                <hr>
+                <h5 class="text-center"><small>Made by Ahmed with lots and lots of <i class="fa fa-heart"></i></small>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var apiKey = "sReZtyAzQIRdt15a9KtFZKBMK73w1JX4";
+    //update name of button
+          $("button").on("click", function (event) {
+            event.preventDefault();
+    //need search card id
+            var article = $("#search-term").val().trim();
+            var queryURL =
+            "api.openweathermap.org/data/2.5/weather?q={san diego}" + article +  "&api-key=" + apiKey + "56fe9e8183ae859aa6bde31ac5b40e36}";
+            $.ajax({
+              url: queryURL,
+              method: "GET",
+            }).then(function (response) {
+              var results = response.data;
+              for (var i = 0; i < results.length; i++) {
+                var articleDiv = $("<div>");
+                //look up in console where items are place and their properties
+                var articleName = $("<h1>").text(results[i]);
+                console.log(articleName);
+                /* var rating = results[i].rating;
+                var p = $("<p>").text("Rating: " + rating);
+                personImage.attr("src", results[i].images.fixed_height.url);
+                articleDiv.prepend(p);
+                articleDiv.prepend(personImage);
+                $("#gifs-appear-here").prepend(articleDiv);
+                article = $(this).attr("data-person"); */
+              }
+            }
+            )
+            });
+            </script>
+</body>
+</html>
+    
+
+
+
+

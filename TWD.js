@@ -37,6 +37,7 @@ $(document).ready(function () {
                 searchArr.push(response.name)
                 localStorage.setItem("cities", JSON.stringify(searchArr));
             }
+    console.log(response);
             //transfer content to HTML
             let cityName = $(".jumbotron").addClass("city-weather").text(citySearch + " Weather Details  ");
             let currentDate = moment().format("  MM-DD-YYYY");
@@ -68,6 +69,7 @@ $(document).ready(function () {
                 url: uvIndexURL,
             }).then(function (responseUV) {
                 let currentUV = $("<div>").addClass('lead uv-index').text("UV Index: ");
+console.log(responseUV);
                 let uvValue = $("<span class='badge id='current-uv-level'>").text(responseUV.value);
                 currentUV.append(uvValue);
                 if (responseUV.value >= 0 && responseUV.value < 3) {
@@ -94,7 +96,7 @@ $(document).ready(function () {
                     type: "GET"
                 }).then(function (response5Day) {
                     let cardbodyElem = $("<div>").addClass("card-body");
-
+console.log(response5Day);
                     let fiveDayCard = $("<div>").addClass(".cardbody");
                     let fiveDate = $("<h5>").text(moment.unix(response5Day.daily[i].dt).format("MM/DD/YYYY"));
                     fiveDayCard.addClass("headline");
@@ -122,7 +124,9 @@ $(document).ready(function () {
             }
             $("#search").val("");
 
-        })
+        }) .catch(err => { 
+            alert("Cannot find City!");
+            console.log("Cannot find city!:", err)});
 
     }
     $(document).on("click", ".city-btn", function () {
@@ -136,7 +140,7 @@ $(document).ready(function () {
         $("#search-list").empty();
         if (searchList) {
             for (i = 0; i < searchList.length; i++) {
-                let listBtn = $("<button>").addClass("btn btn-secondary city-btn").attr('id', 'cityname_' + (i + 1)).text(searchList[i]);
+                let listBtn = $("<button>").addClass("btn btn-secondary city-btn westCoastBtn").attr('id', 'cityname_' + (i + 1)).text(searchList[i]);
                 let listElem = $("<li>").attr('class', 'list-group-item');
                 listElem.append(listBtn);
                 $("#search-list").append(listElem);

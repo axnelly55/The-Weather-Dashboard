@@ -84,3 +84,12 @@ img {
 .forcast {
 	padding: 1rem;
 }
+
+.westCoastBtn {
+	background-color: gold;
+	color: purple;
+}
+
+#search-header {
+		color: black;
+}
